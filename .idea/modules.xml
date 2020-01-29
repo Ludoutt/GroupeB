@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/GestionProjet.iml" filepath="$PROJECT_DIR$/.idea/GestionProjet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/GroupeB.iml" filepath="$PROJECT_DIR$/.idea/GroupeB.iml" />
     </modules>
   </component>
 </project>
