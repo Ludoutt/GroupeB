@@ -3,26 +3,29 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<h1>Connectez-vous</h1>
+<header class="bg-white">
+    <h1 class="text-center">Inscription</h1>
+</header>
 
-{% if hasError %}
-    <div class="alert alert-danger">
-        Une erreur est survenue, le nom d'utilisateur ou le mot de passe est incorrecte
-    </div>
-{% endif %}
+<div class="form-container">
+    {% if hasError %}
+        <div class="alert alert-danger">
+            Une erreur est survenue, le nom d'utilisateur ou le mot de passe est incorrecte
+        </div>
+    {% endif %}
 
-<form action="{{ path('account_login') }}" method="post">
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" name="_username" id="email" class="form-control" placeholder="adresse email" value="{{ username }}" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input type="password" name="_password" id="password" placeholder="mot de passe" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Connexion</button>
-    </div>
-</form>
-
+    <form action="{{ path('account_login') }}" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="_username" id="email" class="form-control" placeholder="adresse email" value="{{ username }}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="_password" id="password" placeholder="mot de passe" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Connexion</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
