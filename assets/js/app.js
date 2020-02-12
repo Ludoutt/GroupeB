@@ -1,3 +1,10 @@
 import '../css/app.scss';
 
-console.log('Hello Webpack Encore');
+import $ from 'jquery';
+import 'bootstrap';
+
+// $(document).ready(function () {
+//     console.log('Hello Webpack Encore');
+// });
+
+// console.log('Hello Webpack Encore');
