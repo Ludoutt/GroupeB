@@ -1,5 +1,3 @@
-// assets/js/app.js
-
-require('../css/app.css');
+import '../css/app.scss';
 
 console.log('Hello Webpack Encore');
