@@ -67,11 +67,17 @@ class User implements UserInterface
      */
     private $userStories;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", mappedBy="contributor")
+     */
+    private $contributors;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->projects = new ArrayCollection();
         $this->userStories = new ArrayCollection();
+        $this->contributors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -223,6 +229,34 @@ class User implements UserInterface
             if ($userStory->getUserId() === $this) {
                 $userStory->setUserId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getContributors(): Collection
+    {
+        return $this->contributors;
+    }
+
+    public function addContributor(Project $contributor): self
+    {
+        if (!$this->contributors->contains($contributor)) {
+            $this->contributors[] = $contributor;
+            $contributor->addContributor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContributor(Project $contributor): self
+    {
+        if ($this->contributors->contains($contributor)) {
+            $this->contributors->removeElement($contributor);
+            $contributor->removeContributor($this);
         }
 
         return $this;
