@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\BacklogProduct;
+use App\Form\BacklogType;
+use Cassandra\Date;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,15 +29,12 @@ class BacklogController extends AbstractController
      */
     public function newBacklog(Request $request, EntityManagerInterface $manager){
         $backlog = new BacklogProduct();
-        $form = $this->createForm(ProjectType::class, $backlog);
-
+        $form = $this->createForm(BacklogType::class, $backlog);
+        $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-
+            $backlog->setCreatedAt(new \DateTime());
             $manager->persist($backlog);
             $manager->flush();
-
-            $this->addFlash('success', 'Votre backlog a bien été créé');
-            return $this->render('backlog/index.html.twig');
         }
 
         return $this->render('backlog/new.html.twig', [
