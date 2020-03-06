@@ -1,0 +1,68 @@
+$colorPrimary: #0091ff;
+$colorSecondary: #bdc0c5;
+$colorLight: #eeeeee;
+
+.c-navigation {
+    position: relative;
+    width: 70px;
+    height: 100vh;
+    padding: 20px 0;
+    border-right: solid 1px $colorLight;
+    .c-navigation__logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        color: $colorPrimary;
+    }
+    .c-navigation__links {
+        .c-navigation__links__item {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            color: $colorSecondary;
+            &:hover {
+                color: $colorPrimary;
+            }
+            &.active {
+                color: $colorPrimary;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 5px;
+                    height: 100%;
+                    background-color: $colorPrimary;
+                    border-radius: 0 10px 10px 0;
+                }
+            }
+            .feather {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    .c-navigation__account {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: $colorPrimary;
+        background-color: $colorLight;
+        &:hover {
+            color: $colorLight;
+            background-color: $colorPrimary;
+        }
+        .feather {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
