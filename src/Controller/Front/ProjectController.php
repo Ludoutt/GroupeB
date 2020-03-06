@@ -19,7 +19,7 @@ class ProjectController extends AbstractController
     public function index()
     {
 
-        return $this->render('project/index.html.twig');
+        return $this->render('project/new.html.twig');
     }
 
     /**
@@ -40,7 +40,7 @@ class ProjectController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Votre projet a bien été créé');
-            return $this->render('project/index.html.twig');
+            return $this->render('project/new.html.twig');
         }
 
         return $this->render('project/new.html.twig', [

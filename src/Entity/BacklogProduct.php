@@ -29,7 +29,7 @@ class BacklogProduct
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\project", inversedBy="backlogProducts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="backlogProducts")
      */
     private $project;
 
