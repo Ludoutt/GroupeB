@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700&display=swap');
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
-@import 'pages/_authentication';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap');
 
 @import "~bootstrap/scss/bootstrap";
+
+@import "components/_navigation";
+@import 'pages/_authentication';
 
 * {
     margin: 0;

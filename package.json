@@ -24,5 +24,8 @@
     "last 2 versions",
     "Firefox ESR",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "feather-icons": "^4.26.0"
+  }
 }
