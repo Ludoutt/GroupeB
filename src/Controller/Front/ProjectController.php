@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Project;
 use App\Entity\User;
 use App\Form\ProjectType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,16 +26,16 @@ class ProjectController extends AbstractController
      * @Route("/new_project", name="new_project")
      * @param Request $request
      * @param EntityManagerInterface $manager
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function newProject(Request $request, EntityManagerInterface $manager){
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
 
+        $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()){
-            $project->getName();
-            $project->getDescription();
-            $project->getUser();
+            $project->setUser($this->getUser());
             $manager->persist($project);
             $manager->flush();
 

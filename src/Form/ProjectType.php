@@ -16,7 +16,6 @@ class ProjectType extends AbstractType
         $builder
             ->add('name')
             ->add('Description')
-            ->add('User')
         ;
     }
 
