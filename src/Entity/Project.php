@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,9 +39,15 @@ class Project
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\BacklogProduct", mappedBy="project")
+     */
+    private $backlogProducts;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->backlogProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +99,37 @@ class Project
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|BacklogProduct[]
+     */
+    public function getBacklogProducts(): Collection
+    {
+        return $this->backlogProducts;
+    }
+
+    public function addBacklogProduct(BacklogProduct $backlogProduct): self
+    {
+        if (!$this->backlogProducts->contains($backlogProduct)) {
+            $this->backlogProducts[] = $backlogProduct;
+            $backlogProduct->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBacklogProduct(BacklogProduct $backlogProduct): self
+    {
+        if ($this->backlogProducts->contains($backlogProduct)) {
+            $this->backlogProducts->removeElement($backlogProduct);
+            // set the owning side to null (unless already changed)
+            if ($backlogProduct->getProject() === $this) {
+                $backlogProduct->setProject(null);
+            }
+        }
 
         return $this;
     }
