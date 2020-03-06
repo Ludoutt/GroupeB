@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier un projet {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="mb-5 mt-5">Modifier un projet</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-warning mt-3">Modifier</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
