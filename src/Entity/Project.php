@@ -22,7 +22,7 @@ class Project
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $User;
+    private $createdBy;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -44,10 +44,16 @@ class Project
      */
     private $backlogProducts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="contributors")
+     */
+    private $contributor;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->backlogProducts = new ArrayCollection();
+        $this->contributor = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,14 +61,14 @@ class Project
         return $this->id;
     }
 
-    public function getUser(): ?User
+    public function getCreatedby(): ?User
     {
-        return $this->User;
+        return $this->createdBy;
     }
 
-    public function setUser(?User $User): self
+    public function setCreatedby(?User $createdBy): self
     {
-        $this->User = $User;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -129,6 +135,32 @@ class Project
             if ($backlogProduct->getProject() === $this) {
                 $backlogProduct->setProject(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getContributor(): Collection
+    {
+        return $this->contributor;
+    }
+
+    public function addContributor(User $contributor): self
+    {
+        if (!$this->contributor->contains($contributor)) {
+            $this->contributor[] = $contributor;
+        }
+
+        return $this;
+    }
+
+    public function removeContributor(User $contributor): self
+    {
+        if ($this->contributor->contains($contributor)) {
+            $this->contributor->removeElement($contributor);
         }
 
         return $this;
