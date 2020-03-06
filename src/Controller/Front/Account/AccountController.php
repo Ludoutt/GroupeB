@@ -67,7 +67,7 @@ class AccountController extends AbstractController
                 'Votre compte a bien été crée'
             );
 
-            return $this->render('front/account/login.html.twig');
+            return $this->redirectToRoute('account_login');
 
         endif;
 

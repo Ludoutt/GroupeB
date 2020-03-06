@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes projets{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mb-5 mt-5">Mes projets</h1>
+            <div class="row">
+                {% for p in projects %}
+                    <div class="col mb-5">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {{ p.name }}
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    {{ p.description }}
+                                </h6>
+                            </div>
+                            <a href="{{ path('edit_project', {'id' : p.id}) }}" class="btn btn-warning">Modfiier</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col mb-5">
+                        <p>Aucun project</p>
+                    </div>
+                {% endfor %}
+            </div>
+        <a type="button" class="btn btn-success" href="{{ path('new_project') }}">Nouveau projet</a>
+    </div>
+{% endblock %}

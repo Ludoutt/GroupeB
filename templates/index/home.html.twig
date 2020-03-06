@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue !{% endblock %}
+
+{% block body %}
+    <h1>HOMEPAGE</h1>
+
+    <div>
+        <a type="button" class="btn btn-success" href="{{ path('account_login') }}">Se connecter</a>
+        <a type="button" class="btn btn-success" href="{{ path('account_register') }}">S'inscrire</a>
+    </div>
+{% endblock %}
