@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\Project;
+use App\Entity\User;
 use App\Form\ProjectType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
