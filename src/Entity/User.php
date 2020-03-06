@@ -57,10 +57,21 @@ class User implements UserInterface
      */
     private $projects;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SprintGroup", inversedBy="user_id")
+     */
+    private $sprintGroup;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserStories", mappedBy="user_id")
+     */
+    private $userStories;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->projects = new ArrayCollection();
+        $this->userStories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +179,49 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($project->getUser() === $this) {
                 $project->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSprintGroup(): ?SprintGroup
+    {
+        return $this->sprintGroup;
+    }
+
+    public function setSprintGroup(?SprintGroup $sprintGroup): self
+    {
+        $this->sprintGroup = $sprintGroup;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserStories[]
+     */
+    public function getUserStories(): Collection
+    {
+        return $this->userStories;
+    }
+
+    public function addUserStory(UserStories $userStory): self
+    {
+        if (!$this->userStories->contains($userStory)) {
+            $this->userStories[] = $userStory;
+            $userStory->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserStory(UserStories $userStory): self
+    {
+        if ($this->userStories->contains($userStory)) {
+            $this->userStories->removeElement($userStory);
+            // set the owning side to null (unless already changed)
+            if ($userStory->getUserId() === $this) {
+                $userStory->setUserId(null);
             }
         }
 
