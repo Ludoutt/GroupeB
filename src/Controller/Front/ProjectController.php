@@ -32,9 +32,7 @@ class ProjectController extends AbstractController
     {
 
         return $this->render('project/index.html.twig', [
-            'projects' => $this->repoProjects->findBy([
-                'createdBy' => $this->getUser()
-            ])
+            'projects' => $this->repoProjects->findAll()
         ]);
     }
 
@@ -51,7 +49,7 @@ class ProjectController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $project->setUser($this->getUser());
+            $project->setCreatedby($this->getUser());
             $manager->persist($project);
             $manager->flush();
 
