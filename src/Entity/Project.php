@@ -19,7 +19,7 @@ class Project
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
      */
     private $User;
