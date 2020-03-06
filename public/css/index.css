@@ -1,0 +1,67 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 576px) {
+    .image_accueil, .logo_accueil{
+        display: none;
+    }
+    .textes_accueil{
+        height: 100vh;
+    }
+}
+
+.image_accueil {
+    background-image: url("../image/fond_accueil.png");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.btn_connexion {
+    padding: 12px;
+    border-radius: 50px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    background-color: #81FF84;
+}
+.btn_connexion:hover{
+    color: white;
+}
+
+.lien_inscription {
+    width: 150px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+
+.lien_inscription:hover {
+    cursor: pointer;
+    /*font-weight: bold;*/
+    color: black;
+    /*text-decoration: none;*/
+}
+
+.logo_accueil{
+    position: absolute;
+    left: 85vw;
+    top: 2vw;
+    font-weight: bold;
+}
+
+.cercle_logo{
+    border-color: #81FF84;
+    border-width: 4px;
+    border-style: solid;
+    width: 25px;
+    height: 25px;
+    border-radius: 200px;
+    margin-top: -22px;
+    margin-left: 44px;
+}
