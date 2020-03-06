@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,6 +23,13 @@ class ProjectType extends AbstractType
             ])
             ->add('Description', TextareaType::class, [
                 'label' => 'Description du projet'
+            ])
+            ->add('contributor', EntityType::class, [
+                'label'         => 'Accès au projet',
+                'class'         => User::class,
+                'choice_label'  => 'email',
+                'mapped'        => true,
+                'multiple'      => true,
             ])
         ;
     }

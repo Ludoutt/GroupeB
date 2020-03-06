@@ -33,7 +33,7 @@ class ProjectController extends AbstractController
 
         return $this->render('project/index.html.twig', [
             'projects' => $this->repoProjects->findBy([
-                'User' => $this->getUser()
+                'createdBy' => $this->getUser()
             ])
         ]);
     }
