@@ -63,4 +63,31 @@ class ProjectController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
+    /**
+     * @Route("/edit_project/{id}", name="edit_project")
+     * @param Project $project
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function editProject(Project $project,Request $request, EntityManagerInterface $manager){
+
+        $form = $this->createForm(ProjectType::class, $project);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($project);
+            $manager->flush();
+
+            $this->addFlash('success', 'Votre projet a bien été modifié');
+            return $this->redirectToRoute('project');
+        }
+
+        return $this->render('project/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
 }
