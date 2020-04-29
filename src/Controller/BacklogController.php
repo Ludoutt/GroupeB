@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\BacklogProduct;
 use App\Form\BacklogType;
+use App\Repository\BacklogProductRepository;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Project;
@@ -14,13 +15,28 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BacklogController extends AbstractController
 {
+
+
+    private $repoBacklog;
+
+    /**
+     * ProjectController constructor.
+     * @param BacklogProductRepository $backlogProductRepository
+     */
+    public function __construct(BacklogProductRepository $backlogProductRepository)
+    {
+        $this->repoBacklog = $backlogProductRepository;
+    }
+
     /**
      * @Route("/backlog", name="backlog")
      */
     public function index()
     {
 
-        return $this->render('backlog/index.html.twig');
+        return $this->render('backlog/index.html.twig',[
+            'projects' => $this->repoBacklog->findAll()
+        ]);
     }
 
     /**
