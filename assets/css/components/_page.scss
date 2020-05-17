@@ -1,0 +1,26 @@
+@import '../_vars';
+
+.c-page {
+  display: flex;
+  .c-page__body {
+    flex-grow: 1;
+    .c-page__body__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid $colorLight;
+      color: $colorPrimary;
+      background-color: $colorLightest;
+      font-weight: 700;
+      h1 {
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+    .c-page__body__content {
+      padding: 20px;
+    }
+  }
+}
