@@ -1,13 +1,13 @@
-$colorPrimary: #0091ff;
-$colorSecondary: #bdc0c5;
-$colorLight: #eeeeee;
+@import '../_vars';
 
 .c-navigation {
-    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 70px;
     height: 100vh;
     padding: 20px 0;
-    border-right: solid 1px $colorLight;
+    border-right: 1px solid $colorLight;
     .c-navigation__logo {
         display: flex;
         justify-content: center;
@@ -55,9 +55,9 @@ $colorLight: #eeeeee;
         height: 40px;
         border-radius: 50%;
         color: $colorPrimary;
-        background-color: $colorLight;
+        background-color: $colorLightest;
         &:hover {
-            color: $colorLight;
+            color: $colorLightest;
             background-color: $colorPrimary;
         }
         .feather {
