@@ -3,8 +3,12 @@
 
 @import "~bootstrap/scss/bootstrap";
 
-@import "components/_navigation";
+@import 'components/_task';
+@import 'components/_navigation';
+@import 'components/_page';
+
 @import 'pages/_authentication';
+@import 'pages/_sprint';
 
 * {
     margin: 0;

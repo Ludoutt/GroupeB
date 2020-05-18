@@ -1,0 +1,77 @@
+@import '../_vars';
+
+.c-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  .c-task__tag {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border: 1px solid $colorGrey;
+    border-radius: 4px;
+    color: $colorGrey;
+    background-color: white;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+    &--full {
+      color: white;
+      background-color: $colorGrey;
+    }
+  }
+  .c-task__title {
+    flex-shrink: 1 !important;
+  }
+  .c-task__priority {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    .feather {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .c-task__assignee {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid $colorLight;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .c-task__left,
+  .c-task__right {
+    display: flex;
+    align-items: center;
+    > * {
+      flex-shrink: 0;
+      margin-right: 5px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .c-task__left {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+
+  &--backlog {
+    min-height: 40px;
+    padding: 5px 10px;
+    border: 1px solid $colorLight;
+    background-color: $colorLightest;
+    &:hover {
+      background-color: $colorLight;
+    }
+  }
+}

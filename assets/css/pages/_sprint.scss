@@ -1,0 +1,45 @@
+@import '../_vars';
+
+.sprintBacklog {
+  .sprintBacklog__infos {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    > * {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .sprintBacklog__infos__tag,
+    .sprintBacklog__infos__cta {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid $colorGrey;
+      color: $colorGrey;
+      background-color: white;
+      font-size: 15px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .sprintBacklog__infos__cta {
+      border: none;
+      color: white;
+      background-color: $colorPrimary;
+      &:hover {
+        background-color: darken($colorPrimary, 5%);
+      }
+    }
+  }
+  .sprintBacklog__tasks {
+    > * {
+      margin-bottom: -1px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

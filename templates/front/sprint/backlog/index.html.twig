@@ -1,0 +1,83 @@
+{% extends '@App/base.html.twig' %}
+
+{% set tasks = [
+    {
+        id: 1,
+        userStory: 'Lorem story',
+        title: 'Lorem ipsum dolor sit amet',
+        description: '',
+        storyPoints: 1,
+        assignee: {
+            name: 'Julien Ramard',
+            initials: 'JR',
+            color: '#BE69FF'
+        },
+        priority: 'low',
+        team: 'Front',
+        status: 2,
+    },
+    {
+        id: 2,
+        userStory: 'Lorem story',
+        title: 'Praesent consequat ante lobortis mauris pellentesque sed porttitor urna convallis',
+        description: '',
+        storyPoints: 3,
+        assignee: {
+            name: 'Steven Nativel',
+            initials: 'SN',
+            color: '#FFC86B'
+        },
+        priority: 'high',
+        team: 'Back',
+        status: 3,
+    },
+    {
+        id: 3,
+        userStory: 'Lorem story',
+        title: 'Phasellus lacinia fringilla sodales',
+        description: '',
+        storyPoints: 2,
+        assignee: {
+            name: 'Nicolas Yochum',
+            initials: 'NY',
+            color: '#85FFB5'
+        },
+        priority: 'medium',
+        team: 'Back',
+        status: 1,
+    },
+] %}
+
+{% set page = '@AppFront/components/page.html.twig' %}
+{% set task = '@AppFront/components/task.html.twig' %}
+
+{% block title %}Sprint Backlog{% endblock %}
+
+{% block body %}
+    {% embed page with { page_class: 'sprintBacklog' } %}
+        {% block page__head %}
+            <h1>Sprint Backlog</h1>
+        {% endblock %}
+        {% block page__content %}
+            <div class="sprintBacklog__infos">
+                <span class="sprintBacklog__infos__tag">{{ tasks|length }} tasks</span>
+                <button class="sprintBacklog__infos__cta">Add task</button>
+            </div>
+            <div class="sprintBacklog__tasks">
+                {% for i in 1..10 %}
+                    {% for item in tasks %}
+                        {% include task with {
+                            task_modifiers: ['backlog'],
+                            task_userStory: item.userStory,
+                            task_team: item.team,
+                            task_title: item.title,
+                            task_priority: item.priority,
+                            task_assignee: item.assignee,
+                            task_storyPoints: item.storyPoints,
+                        } %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

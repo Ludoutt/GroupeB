@@ -1,0 +1,35 @@
+{% set task_modifiers = task_modifiers|default([]) %}
+{% set task_modifierList = {
+    'backlog': 'c-task--backlog',
+} %}
+
+{% set task_id = task_id|default(null) %}
+{% set task_userStory = task_userStory|default('') %}
+{% set task_team = task_team|default('') %}
+{% set task_title = task_title|default('') %}
+{% set task_priority = task_priority|default('') %}
+{% set task_assignee = task_assignee|default([]) %}
+{% set task_storyPoints = task_storyPoints|default(null) %}
+
+<div class="c-task{% for modifier in task_modifiers %}{{modifier in task_modifierList|keys ? ' '~task_modifierList[modifier]}}{% endfor %}">
+    <div class="c-task__left">
+        <div class="c-task__tag c-task__tag--full">{{ task_userStory }}</div>
+        {% if task_team is not empty %}
+        <div class="c-task__tag">{{ task_team }}</div>
+        {% endif %}
+        <div class="c-task__title">{{ task_title }}</div>
+    </div>
+    <div class="c-task__right">
+        {% if task_priority is not empty %}
+        <div class="c-task__priority">
+            {% if task_priority == 'high' %}<i style="color: #f56c6c" data-feather="arrow-up"></i>{% endif %}
+            {% if task_priority == 'medium' %}<i style="color: #e6a23c" data-feather="arrow-up"></i>{% endif %}
+            {% if task_priority == 'low' %}<i style="color: #67c23a" data-feather="arrow-down"></i>{% endif %}
+        </div>
+        {% endif %}
+        {% if task_assignee is not empty %}
+        <div class="c-task__assignee" style="background-color: {{ task_assignee.color }}">{{ task_assignee.initials }}</div>
+        {% endif %}
+        <div class="c-task__tag">{{ task_storyPoints }}</div>
+    </div>
+</div>

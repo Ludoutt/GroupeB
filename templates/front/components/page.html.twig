@@ -1,0 +1,23 @@
+{% set navigation = '@AppFront/components/navigation.html.twig' %}
+
+{% set page_class = page_class|default('') %}
+
+<div class="c-page{{ page_class is not empty ? ' '~page_class }}">
+    {% include navigation %}
+    <div class="c-page__body">
+        <div class="c-page__body__head">
+            {%- if block('page__head') is defined -%}
+                {{- block('page__head') -}}
+            {%- else -%}
+                {{ page_head }}
+            {%- endif -%}
+        </div>
+        <div class="c-page__body__content">
+            {%- if block('page__content') is defined -%}
+                {{- block('page__content') -}}
+            {%- else -%}
+                {{ page_content }}
+            {%- endif -%}
+        </div>
+    </div>
+</div>
