@@ -5,6 +5,9 @@
   .c-page__body {
     flex-grow: 1;
     .c-page__body__head {
+      position: sticky;
+      top: 0;
+      left: $headerWidth;
       display: flex;
       justify-content: space-between;
       align-items: center;

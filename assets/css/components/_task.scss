@@ -24,6 +24,9 @@
       background-color: $colorGrey;
     }
   }
+  .c-task__title {
+    flex-shrink: 1 !important;
+  }
   .c-task__priority {
     display: inline-flex;
     width: 20px;
@@ -50,6 +53,7 @@
     display: flex;
     align-items: center;
     > * {
+      flex-shrink: 0;
       margin-right: 5px;
       &:last-child {
         margin-right: 0;

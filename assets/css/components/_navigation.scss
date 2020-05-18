@@ -1,10 +1,11 @@
 @import '../_vars';
 
 .c-navigation {
+    flex-shrink: 0;
     position: sticky;
     top: 0;
     left: 0;
-    width: 70px;
+    width: $headerWidth;
     height: 100vh;
     padding: 20px 0;
     border-right: 1px solid $colorLight;
