@@ -84,7 +84,7 @@
                             <span>{{ status.name }}</span>
                             <button class="sprint__cta">Add task</button>
                         </div>
-                        <div class="sprint__kanban__column__body">
+                        <div class="sprint__kanban__column__body" data-ref="kanbanDropZone">
                             {% for i in 1..5 %}
                                 {% for item in tasks %}
                                     {% if item.status == status.id %}
@@ -96,6 +96,10 @@
                                             task_priority: item.priority,
                                             task_assignee: item.assignee,
                                             task_storyPoints: item.storyPoints,
+                                            task_attr: {
+                                                'data-ref': 'kanbanDraggableTask',
+                                                'draggable': 'true',
+                                            },
                                         } %}
                                     {% endif %}
                                 {% endfor %}
