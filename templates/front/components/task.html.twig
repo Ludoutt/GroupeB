@@ -1,9 +1,9 @@
+{% set task_attr = task_attr|default({}) %}
 {% set task_modifiers = task_modifiers|default([]) %}
 {% set task_modifierList = {
-    'backlog': 'c-task--backlog',
+    'kanban': 'c-task--kanban',
 } %}
 
-{% set task_id = task_id|default(null) %}
 {% set task_userStory = task_userStory|default('') %}
 {% set task_team = task_team|default('') %}
 {% set task_title = task_title|default('') %}
@@ -11,7 +11,24 @@
 {% set task_assignee = task_assignee|default([]) %}
 {% set task_storyPoints = task_storyPoints|default(null) %}
 
-<div class="c-task{% for modifier in task_modifiers %}{{modifier in task_modifierList|keys ? ' '~task_modifierList[modifier]}}{% endfor %}">
+{% set task_id = [] %}
+{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
+{% set numbers = '0123456789' %}
+{% for i in 1..10 %}
+    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
+    {% set task_id = task_id|merge([randomCharacter]) %}
+{% endfor %}
+{% set task_id = task_id|join %}
+
+<div data-id={{ task_id }} class="c-task{%
+    for modifier in task_modifiers
+%}{{ modifier in task_modifierList|keys ? ' '~task_modifierList[modifier] }}{%
+    endfor
+%}"{%
+    for attr in task_attr|keys
+%}{{ ' '~attr }}="{{ task_attr[attr] }}"{%
+    endfor
+%}>
     <div class="c-task__left">
         <div class="c-task__tag c-task__tag--full">{{ task_userStory }}</div>
         {% if task_team is not empty %}

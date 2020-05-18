@@ -8,6 +8,9 @@ import 'bootstrap';
 import feather from 'feather-icons';
 feather.replace();
 
+// JS Files
+import './dragKanban';
+
 // $(document).ready(function () {
 //     console.log('Hello Webpack Encore');
 // });

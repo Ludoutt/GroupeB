@@ -21,9 +21,19 @@ class SprintController extends AbstractController
     /**
      * @Route("/sprint/backlog", name="sprint_backlog")
      */
-    public function index()
+    public function backlog()
     {
         return $this->render('front/sprint/backlog/index.html.twig', [
+            'sprintTasks' => $this->sprintTasks->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/sprint/kanban", name="sprint_kanban")
+     */
+    public function kanban()
+    {
+        return $this->render('front/sprint/kanban/index.html.twig', [
             'sprintTasks' => $this->sprintTasks->findAll(),
         ]);
     }

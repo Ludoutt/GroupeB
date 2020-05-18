@@ -1,0 +1,113 @@
+{% extends '@App/base.html.twig' %}
+
+{% set tasks = [
+    {
+        id: 1,
+        userStory: 'Lorem story',
+        title: 'Lorem ipsum dolor sit amet',
+        description: '',
+        storyPoints: 1,
+        assignee: {
+        name: 'Julien Ramard',
+        initials: 'JR',
+        color: '#BE69FF'
+    },
+        priority: 'low',
+        team: 'Front',
+        status: 2,
+    },
+    {
+        id: 2,
+        userStory: 'Lorem story',
+        title: 'Praesent consequat ante lobortis mauris pellentesque sed porttitor urna convallis',
+        description: '',
+        storyPoints: 3,
+        assignee: {
+        name: 'Steven Nativel',
+        initials: 'SN',
+        color: '#FFC86B'
+    },
+        priority: 'high',
+        team: 'Back',
+        status: 3,
+    },
+    {
+        id: 3,
+        userStory: 'Lorem story',
+        title: 'Phasellus lacinia fringilla sodales',
+        description: '',
+        storyPoints: 2,
+        assignee: {
+        name: 'Nicolas Yochum',
+        initials: 'NY',
+        color: '#85FFB5'
+    },
+        priority: 'medium',
+        team: 'Back',
+        status: 1,
+    },
+] %}
+
+{% set statuses = [
+    {
+        id: 1,
+        name: 'Todo',
+    },
+    {
+        id: 2,
+        name: 'Doing',
+    },
+    {
+        id: 3,
+        name: 'Done',
+    },
+] %}
+
+{% set page = '@AppFront/components/page.html.twig' %}
+{% set task = '@AppFront/components/task.html.twig' %}
+
+{% block title %}Sprint Kanban{% endblock %}
+
+{% block body %}
+    {% embed page with { page_class: 'sprint' } %}
+        {% block page__head %}
+            <h1>Sprint Kanban</h1>
+        {% endblock %}
+        {% block page__content %}
+            <div class="sprint__infos">
+                <span class="sprint__tag">{{ tasks|length }} tasks</span>
+            </div>
+            <div class="sprint__kanban">
+                {% for status in statuses %}
+                    <div class="sprint__kanban__column">
+                        <div class="sprint__kanban__column__head">
+                            <span>{{ status.name }}</span>
+                            <button class="sprint__cta">Add task</button>
+                        </div>
+                        <div class="sprint__kanban__column__body" data-ref="kanbanDropZone">
+                            {% for i in 1..5 %}
+                                {% for item in tasks %}
+                                    {% if item.status == status.id %}
+                                        {% include task with {
+                                            task_modifiers: ['kanban'],
+                                            task_userStory: item.userStory,
+                                            task_team: item.team,
+                                            task_title: item.title,
+                                            task_priority: item.priority,
+                                            task_assignee: item.assignee,
+                                            task_storyPoints: item.storyPoints,
+                                            task_attr: {
+                                                'data-ref': 'kanbanDraggableTask',
+                                                'draggable': 'true',
+                                            },
+                                        } %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
