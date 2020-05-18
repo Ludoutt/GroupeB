@@ -54,20 +54,20 @@
 {% block title %}Sprint Backlog{% endblock %}
 
 {% block body %}
-    {% embed page with { page_class: 'sprintBacklog' } %}
+    {% embed page with { page_class: 'sprint' } %}
         {% block page__head %}
             <h1>Sprint Backlog</h1>
         {% endblock %}
         {% block page__content %}
-            <div class="sprintBacklog__infos">
-                <span class="sprintBacklog__infos__tag">{{ tasks|length }} tasks</span>
-                <button class="sprintBacklog__infos__cta">Add task</button>
+            <div class="sprint__infos">
+                <span class="sprint__tag">{{ tasks|length }} tasks</span>
+                <button class="sprint__cta">Add task</button>
             </div>
-            <div class="sprintBacklog__tasks">
+            <div class="sprint__tasks">
                 {% for i in 1..10 %}
                     {% for item in tasks %}
                         {% include task with {
-                            task_modifiers: ['backlog'],
+                            task_modifiers: [],
                             task_userStory: item.userStory,
                             task_team: item.team,
                             task_title: item.title,

@@ -4,7 +4,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 40px;
+  padding: 5px 10px;
+  border: 1px solid $colorLight;
+  background-color: $colorLightest;
   cursor: pointer;
+  &:hover {
+    background-color: $colorLight;
+  }
   .c-task__tag {
     display: inline-flex;
     justify-content: center;
@@ -17,7 +24,6 @@
     color: $colorGrey;
     background-color: white;
     font-size: 12px;
-    line-height: 1;
     white-space: nowrap;
     &--full {
       color: white;
@@ -65,13 +71,21 @@
     margin-right: 10px;
   }
 
-  &--backlog {
-    min-height: 40px;
-    padding: 5px 10px;
-    border: 1px solid $colorLight;
-    background-color: $colorLightest;
+  &--kanban {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 5px 10px lighten($colorLight, 5%);
     &:hover {
-      background-color: $colorLight;
+      background-color: $colorLightest;
+    }
+    .c-task__left {
+      flex-wrap: wrap;
+    }
+    .c-task__tag {
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
   }
 }
