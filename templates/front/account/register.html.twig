@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<header class="bg-white">
+    <h1 class="text-center">Inscription</h1>
+</header>
+
+<div class="form-container">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+        <label class="cgu-checkbox">
+            <input type="checkbox">
+            <p>Je transmets mes données personnelles et j'accepte la Politique de confidentialité de GroupeB pour plus d'informations.</p>
+        </label>
+        <button type="submit">Valider</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+@import '../_vars';
+
+.c-navigation {
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: $headerWidth;
+    height: 100vh;
+    padding: 20px 0;
+    border-right: 1px solid $colorLight;
+    .c-navigation__logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        color: $colorPrimary;
+    }
+    .c-navigation__links {
+        .c-navigation__links__item {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            color: $colorSecondary;
+            &:hover {
+                color: $colorPrimary;
+            }
+            &.active {
+                color: $colorPrimary;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 5px;
+                    height: 100%;
+                    background-color: $colorPrimary;
+                    border-radius: 0 10px 10px 0;
+                }
+            }
+            .feather {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    .c-navigation__account {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: $colorPrimary;
+        background-color: $colorLightest;
+        &:hover {
+            color: $colorLightest;
+            background-color: $colorPrimary;
+        }
+        .feather {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap');
+
+@import "~bootstrap/scss/bootstrap";
+
+@import 'components/_task';
+@import 'components/_navigation';
+@import 'components/_page';
+
+@import 'pages/_authentication';
+@import 'pages/_sprint';
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.test {
+    user-select: none;
+}

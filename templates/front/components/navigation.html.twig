@@ -1,0 +1,33 @@
+{% set navigationItems = [
+    {
+        name: 'Product Backlog',
+        icon: 'list',
+        link: 'account_login'
+    },
+    {
+        name: 'Sprint Backlog',
+        icon: 'list',
+        link: 'sprint_backlog'
+    },
+    {
+        name: 'Sprint Kanban',
+        icon: 'columns',
+        link: 'sprint_kanban'
+    },
+] %}
+
+<div class="c-navigation">
+    <div class="c-navigation__logo">
+        <i data-feather="codesandbox"></i>
+    </div>
+    <div class="c-navigation__links">
+        {% for item in navigationItems %}
+            <a href="{{ path(item.link) }}" class="c-navigation__links__item {{ app.request.pathInfo|slice(1) == item.link ? 'active' }}" title="{{ item.name }}">
+                <i data-feather="{{ item.icon }}"></i>
+            </a>
+        {% endfor %}
+    </div>
+    <a href="" class="c-navigation__account" title="Paramètres">
+        <i data-feather="settings"></i>
+    </a>
+</div>
