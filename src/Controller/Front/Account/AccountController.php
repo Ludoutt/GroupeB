@@ -14,6 +14,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AccountController extends AbstractController
 {
+
     /**
      * @Route("/login", name="account_login")
      * @param AuthenticationUtils $utils
@@ -21,7 +22,6 @@ class AccountController extends AbstractController
      */
     public function login(AuthenticationUtils $utils)
     {
-
         $error = $utils->getLastAuthenticationError();
         $username = $utils->getLastUsername();
 

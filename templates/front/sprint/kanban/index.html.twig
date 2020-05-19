@@ -1,5 +1,6 @@
 {% extends '@App/base.html.twig' %}
 
+{#
 {% set tasks = [
     {
         id: 1,
@@ -47,6 +48,7 @@
         status: 1,
     },
 ] %}
+#}
 
 {% set statuses = [
     {
@@ -75,7 +77,7 @@
         {% endblock %}
         {% block page__content %}
             <div class="sprint__infos">
-                <span class="sprint__tag">{{ tasks|length }} tasks</span>
+                <span class="sprint__tag">{{ sprintTasks|length }} tasks</span>
             </div>
             <div class="sprint__kanban">
                 {% for status in statuses %}
@@ -85,22 +87,28 @@
                             <button class="sprint__cta">Add task</button>
                         </div>
                         <div class="sprint__kanban__column__body" data-ref="kanbanDropZone">
-                            {% for i in 1..5 %}
-                                {% for item in tasks %}
-                                    {% if item.status == status.id %}
-                                        {% include task with {
-                                            task_modifiers: ['kanban'],
-                                            task_userStory: item.userStory,
-                                            task_team: item.team,
-                                            task_title: item.title,
-                                            task_priority: item.priority,
-                                            task_assignee: item.assignee,
-                                            task_storyPoints: item.storyPoints,
-                                            task_attr: {
-                                                'data-ref': 'kanbanDraggableTask',
-                                                'draggable': 'true',
-                                            },
-                                        } %}
+                            {% for user in users %}
+                                {% for story in userStories %}
+                                    {% if user.id == story.user.id %}
+                                        {% for item in sprintTasks %}
+                                            {% if story.id == item.userStories.id %}
+                                                {% if item.status == status.id %}
+                                                    {% include task with {
+                                                        task_modifiers: ['kanban'],
+                                                        task_userStory: story.titre,
+                                                        task_team: item.team,
+                                                        task_title: item.titre,
+                                                        task_priority: item.priority,
+                                                        task_assignee: user,
+                                                        task_storyPoints: item.storyPoints,
+                                                        task_attr: {
+                                                            'data-ref': 'kanbanDraggableTask',
+                                                            'draggable': 'true',
+                                                        },
+                                                    } %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
                                     {% endif %}
                                 {% endfor %}
                             {% endfor %}

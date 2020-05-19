@@ -32,7 +32,7 @@
     <div class="c-task__left">
         <div class="c-task__tag c-task__tag--full">{{ task_userStory }}</div>
         {% if task_team is not empty %}
-        <div class="c-task__tag">{{ task_team }}</div>
+        <div class="c-task__tag">{{ task_team|capitalize }}</div>
         {% endif %}
         <div class="c-task__title">{{ task_title }}</div>
     </div>

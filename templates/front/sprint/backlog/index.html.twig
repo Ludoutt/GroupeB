@@ -1,5 +1,6 @@
 {% extends '@App/base.html.twig' %}
 
+{#
 {% set tasks = [
     {
         id: 1,
@@ -47,6 +48,7 @@
         status: 1,
     },
 ] %}
+#}
 
 {% set page = '@AppFront/components/page.html.twig' %}
 {% set task = '@AppFront/components/task.html.twig' %}
@@ -60,21 +62,27 @@
         {% endblock %}
         {% block page__content %}
             <div class="sprint__infos">
-                <span class="sprint__tag">{{ tasks|length }} tasks</span>
+                <span class="sprint__tag">{{ sprintTasks|length }} tasks</span>
                 <button class="sprint__cta">Add task</button>
             </div>
             <div class="sprint__tasks">
-                {% for i in 1..10 %}
-                    {% for item in tasks %}
-                        {% include task with {
-                            task_modifiers: [],
-                            task_userStory: item.userStory,
-                            task_team: item.team,
-                            task_title: item.title,
-                            task_priority: item.priority,
-                            task_assignee: item.assignee,
-                            task_storyPoints: item.storyPoints,
-                        } %}
+                {% for user in users %}
+                    {% for story in userStories %}
+                        {% if user.id == story.user.id %}
+                            {% for item in sprintTasks %}
+                                {% if story.id == item.userStories.id %}
+                                    {% include task with {
+                                        task_modifiers: [],
+                                        task_userStory: story.titre,
+                                        task_team: item.team,
+                                        task_title: item.titre,
+                                        task_priority: item.priority,
+                                        task_assignee: user,
+                                        task_storyPoints: item.storyPoints,
+                                    } %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
                 {% endfor %}
             </div>
