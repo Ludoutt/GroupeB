@@ -72,6 +72,16 @@ class User implements UserInterface
      */
     private $contributors;
 
+    /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private $initials;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $color;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -258,6 +268,30 @@ class User implements UserInterface
             $this->contributors->removeElement($contributor);
             $contributor->removeContributor($this);
         }
+
+        return $this;
+    }
+
+    public function getInitials(): ?string
+    {
+        return $this->initials;
+    }
+
+    public function setInitials(?string $initials): self
+    {
+        $this->initials = $initials;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }

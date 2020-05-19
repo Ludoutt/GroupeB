@@ -41,6 +41,21 @@ class Task
      */
     private $user_stories;
 
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $priority;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $team;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +117,42 @@ class Task
     public function setUserStories(?UserStories $user_stories): self
     {
         $this->user_stories = $user_stories;
+
+        return $this;
+    }
+
+    public function getPriority(): ?string
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(?string $priority): self
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    public function getTeam(): ?string
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?string $team): self
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
